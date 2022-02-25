@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-// import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class ExchangeChart extends StatefulWidget {
   const ExchangeChart({Key? key}) : super(key: key);

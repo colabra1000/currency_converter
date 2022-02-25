@@ -14,6 +14,8 @@ class CurrencyCalculatorRepository implements ICurrencyCalculatorRepository {
 
   CurrencyCalculatorRepository(this.currencyCalculatorRemoteDatasource);
 
+  /// rates and historical rates are only fetched once before the application
+  /// starts and catched
   CurrencyCalculatorDto? cachedResponse;
   List<CurrencyCalculatorDto>? catchedHistoricalRates;
   @override
@@ -21,7 +23,6 @@ class CurrencyCalculatorRepository implements ICurrencyCalculatorRepository {
       getLatestConversionRates() async {
     try {
       if (cachedResponse != null) {
-        print("from Cache");
         return right(cachedResponse!.toDomain());
       }
 
@@ -31,7 +32,6 @@ class CurrencyCalculatorRepository implements ICurrencyCalculatorRepository {
           CurrencyCalculatorDto.fromJson(jsonDecode(response.toString()));
 
       cachedResponse = currencyCalculatorDto;
-      print("from Network");
 
       return right(currencyCalculatorDto.toDomain());
     } catch (e) {
@@ -44,8 +44,6 @@ class CurrencyCalculatorRepository implements ICurrencyCalculatorRepository {
       getHitoricalRates(List<String> boundDates) async {
     try {
       if (catchedHistoricalRates != null) {
-        print("history from Cache");
-
         return right(catchedHistoricalRates!.map((e) {
           return e.toDomain();
         }).toList());
@@ -59,8 +57,6 @@ class CurrencyCalculatorRepository implements ICurrencyCalculatorRepository {
       }).toList();
 
       catchedHistoricalRates = historicalCurrencyCalculatorDto;
-
-      print("history from Network");
 
       return right(historicalCurrencyCalculatorDto.map(
         (e) {

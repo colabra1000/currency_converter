@@ -148,6 +148,7 @@ class _CurrencyCalculatorState extends State<CurrencyCalculator> {
 
   Widget _currencyCalculatorHeading() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Currency",

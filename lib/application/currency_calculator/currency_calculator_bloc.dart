@@ -33,6 +33,11 @@ class CurrencyCalculatorBloc
           emit(state.copyWith(
               convertToCurrency: event.value, convertToValue: 0));
         },
+
+        /// because rates all the rates returned are agains the EUR
+        /// i.e a single denominator.
+        /// exchange rate can be found by (convertFromRate/convertToRate) *
+        /// convertFromValue
         currencyConverted: (event) async {
           late Map rate;
           final currencyRates =
@@ -42,12 +47,11 @@ class CurrencyCalculatorBloc
             rate = r.rates;
           });
 
-          double exchangePoint;
-
           try {
-            exchangePoint =
+            double exchangePoint =
                 rate[state.convertFromCurrency] / rate[state.convertToCurrency];
-            final exchangeRate = exchangePoint * event.convertFromValue;
+
+            double exchangeRate = exchangePoint * event.convertFromValue;
             emit(state.copyWith(convertToValue: exchangeRate.roundTo(3)));
           } catch (e) {
             return;
