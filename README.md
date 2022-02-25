@@ -37,7 +37,7 @@ ICurrencyCalculatorRepository -> CurrencyCalculatorBloc -> CurrencyCalculator(Wi
 
 this is done purposely to imporve unit testing for each of the components and seperate UI from business logic.
 
-Business Logic
+## Business Logic
 All exchange rates as relate to the EUR (common denominator) are gotten once at the start of the application.
 Then exchange rate between the currencies can be calculated using 
 (convertFromCurrencyRate/convertToCurrencyRate) * convertFromValue.
