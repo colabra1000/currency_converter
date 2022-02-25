@@ -57,8 +57,14 @@ class MTextField extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: label == SelectConversionCurrencies.toCurrency
-                      ? Text(state.convertToCurrency.toUpperCase())
-                      : Text(state.convertFromCurrency.toUpperCase()),
+                      ? Text(
+                          state.convertToCurrency.toUpperCase(),
+                          style: mediumText,
+                        )
+                      : Text(
+                          state.convertFromCurrency.toUpperCase(),
+                          style: mediumText,
+                        ),
                 ),
               );
             },

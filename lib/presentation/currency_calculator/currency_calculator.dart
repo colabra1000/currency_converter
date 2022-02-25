@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:currency_converter/application/currency_calculator/currency_calculator_bloc.dart';
 import 'package:currency_converter/application/historical_data_graph/bloc/historical_data_graph_bloc.dart';
 import 'package:currency_converter/inject.dart';
@@ -107,7 +109,7 @@ class _CurrencyCalculatorState extends State<CurrencyCalculator> {
       width: double.infinity,
       child: CupertinoButton(
         color: primaryColor,
-        child: const Text("Convert"),
+        child: Text("Convert", style: mediumText),
         onPressed: () {
           final int? convertFromValue =
               int.tryParse(fromCurrencyEditingController.text);
@@ -207,10 +209,15 @@ class SelectConversionCurrencies extends StatelessWidget {
           decoration: BoxDecoration(border: Border.all(color: fadeColor)),
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
+              itemHeight: max(kMinInteractiveDimension, 40.sp),
+              isDense: false,
               value: label == fromCurrency
                   ? state.convertFromCurrency
                   : state.convertToCurrency,
-              icon: const Icon(Icons.keyboard_arrow_down_rounded),
+              icon: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                size: 18.sp,
+              ),
               items: state.currencies
                   .map(
                     (e) => DropdownMenuItem(
@@ -239,9 +246,12 @@ class SelectConversionCurrencies extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
       child: Row(
         children: [
-          const Icon(Icons.circle),
+          Icon(Icons.circle, size: 18.sp),
           SizedBox(width: 10.w),
-          Text(currencyName),
+          Text(
+            currencyName,
+            style: mediumText,
+          ),
         ],
       ),
     );

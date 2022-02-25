@@ -25,7 +25,10 @@ class AppLayout extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.menu),
+                    Icon(
+                      Icons.menu,
+                      size: 20.sp,
+                    ),
                     Text("Sign up",
                         style: mediumText.copyWith(color: primaryColor))
                   ],

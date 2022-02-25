@@ -17,7 +17,10 @@ class ExchangeChart extends StatefulWidget {
 class _ExchangeChartState extends State<ExchangeChart>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-  List<Widget> tabs = [const Text("past 30 days"), const Text("past 90 days")];
+  List<Widget> tabs = [
+    Text("past 30 days", style: mediumText),
+    Text("past 90 days", style: mediumText)
+  ];
 
   @override
   void initState() {
